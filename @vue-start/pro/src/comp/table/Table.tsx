@@ -58,6 +58,9 @@ export interface IOperateItem {
   sort?: number;
   per?: string; //权限字符串
   perSuffix?: string; //权限字符串后缀
+  //
+  tip?: string | VNode | ((record: Record<string, any>) => string | VNode); //tooltip提示
+  tipProps?: Record<string, any> | ((record: Record<string, any>) => Record<string, any>); //tooltip配置
 }
 
 /**
@@ -190,8 +193,10 @@ export const ProTable = defineComponent<ProTableProps>({
               disabled: isFunction(item.disabled) ? item.disabled(record) : item.disabled,
               loading: isFunction(item.loading) ? item.loading(record) : item.loading,
               extraProps: isFunction(item.extraProps) ? item.extraProps(record) : item.extraProps,
-              element: isFunction(item.element) ? () => item.element!(record, item) : item.element,
+              element: isFunction(item.element) ? (i) => item.element!(record, i) : item.element,
               onClick: () => handleOperateClick(record, item),
+              tip: isFunction(item.tip) ? item.tip(record) : item.tip,
+              tipProps: isFunction(item.tipProps) ? item.tipProps(record) : item.tipProps,
             } as IOpeItem;
           });
 
@@ -295,10 +300,24 @@ export const ProTable = defineComponent<ProTableProps>({
 
     /******************************** toolbar class *******************************/
 
+    const toolbarRef = ref();
+    const toolbarHeiRef = ref(0);
+
     const toolbarStartDomRef = ref(); //dom
     const toolbarStartValidRef = ref(false); //dom是否为空
     const toolbarExtraDomRef = ref();
     const toolbarExtraValidRef = ref(false);
+
+    //计算toolbar高度
+    useResizeObserver(toolbarRef, (entries) => {
+      const rect = get(entries, [0, "contentRect"]);
+      const styles = window.getComputedStyle(toolbarRef.value);
+      if (rect.height && styles) {
+        const mbs = styles.getPropertyValue("margin-bottom");
+        const mb = parseInt(mbs.replace("px", ""));
+        toolbarHeiRef.value = rect.height + mb;
+      }
+    });
 
     useResizeObserver(toolbarStartDomRef, () => {
       toolbarStartValidRef.value = !!toolbarStartDomRef.value.innerText;
@@ -324,8 +343,11 @@ export const ProTable = defineComponent<ProTableProps>({
       ) : null;
 
       return (
-        <div class={props.clsName} {...(pick(attrs, "class") as any)}>
-          <div class={`${props.clsName}-toolbar ${toolbarValidClass.value}`}>
+        <div
+          class={props.clsName}
+          style={`--pro-table-toolbar-hei: ${toolbarHeiRef.value}px`}
+          {...(pick(attrs, "class") as any)}>
+          <div ref={toolbarRef} class={`${props.clsName}-toolbar ${toolbarValidClass.value}`}>
             <div ref={toolbarStartDomRef} class={`${props.clsName}-toolbar-start`}>
               {slots.toolbar?.()}
             </div>

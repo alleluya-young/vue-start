@@ -1,10 +1,11 @@
 import { App } from "@vue/runtime-core";
-import { ElButton, ElInputNumber, ElMessageBox, ElIcon } from "element-plus";
+import { ElButton, ElInputNumber, ElMessageBox, ElIcon, ElScrollbar } from "element-plus";
 import { ArrowLeftBold } from "@element-plus/icons-vue";
 import {
   ProLoading,
   ProFormItem,
   ProModal,
+  ProDrawer,
   ProPagination,
   ProPopover,
   ProCheckbox,
@@ -35,6 +36,8 @@ import {
   ColumnSetting,
   IOperateItem,
   TColumn,
+  ElementKeys,
+  ProTip,
 } from "@vue-start/pro";
 
 import { ProPreview } from "@vue-start/media";
@@ -94,6 +97,7 @@ ProSearchForm.props = {
 
 ProPage.props = {
   ...ProPage.props,
+  layoutTabsBackMode: { type: Boolean, default: true },
   renderBackIcon: {
     type: Function,
     default: () => (
@@ -107,8 +111,16 @@ ProPage.props = {
   },
 };
 
+ProModal.props = {
+  ...ProModal.props,
+  // top: { type: String, default: "5vh" },
+  scrollProps: { type: Object, default: { maxHeight: "70vh" } },
+};
+
 export const elementMap = {
   ...elementMapOrigin,
+  [ElementKeys.ScrollKey]: ElScrollbar,
+  [ElementKeys.ProOperateKey]: ProOperate,
   ProPage,
   ProTypography,
 };
@@ -132,9 +144,11 @@ export const initComp = (app: App) => {
   app.component("pro-modal-curd", ProModalCurd);
   app.component("pro-curd-list", ProCurdList);
   app.component("pro-typography", ProTypography);
-  //element-plus
-  app.component("pro-loading", ProLoading);
+  app.component("pro-tip", ProTip),
+    //element-plus
+    app.component("pro-loading", ProLoading);
   app.component("pro-modal", ProModal);
+  app.component("pro-drawer", ProDrawer);
   app.component("pro-pagination", ProPagination);
   app.component("pro-popover", ProPopover);
   app.component("pro-checkbox", ProCheckbox);

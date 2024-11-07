@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.5.45
+
+- feat: ProWatermark 水印组件，ProLayout 中通过 watermark 属性配置；
+- fix: ProShowTree 展示兼容多选的情况；
+
+# 0.5.44
+
+- feat：Page 新增 sub 属性， 返回按钮展示状态添加 sub 判断
+- feat：useProRouter 中 router 的 back 方法在 tabs 模式下，会关闭当前 tab 并且返回
+
+# 0.5.42
+
+- fix：Layout tabs 子页面 query 判断 bug
+- perf：show 组件添加 render 重写方法、添加 class
+- perf：refresh 当前路由方法提取到 layout provide 中
+- feat：page 新增 layoutTabsBackMode 属性，开启后，在 layout 中的 page showBack 设置为 false
+
+# 0.5.41
+
+- 更新主题渐变色计算方法
+- Layout tabs bug 修复（tabs 切换参数丢失、hide 页面缓存更新、layout 初始化 tab）
+- Layout tabs 拖动钩子 onDragRegister
+
+# 0.5.40
+
+- 新增 theme 模式
+- Layout css 变量位置由:root 迁移到.pro-layout
+- Layout menu 新增 hide 模式
+- Layout 新增 tabs 组件，可通过配置处理
+
+# 0.5.39
+
+- bug 修复；
+
+# 0.5.38
+
+- 新增 ProTip 组件
+- ProFormItem label 新增 tip 提示配置
+- ProOperate items 新增 tip 提示配置
+- ProTable operate element 方法参数换为 item 重写后的对象
+- ProForm class 新增 empty 标记
+
+# 0.5.37
+
+- ProPage class 新增 has-header has-footer 标记
+- ProForm 新增 userOpe 属性：标记用户是否操作过 Form
+
+# 0.5.36
+
+- ProTable 新增 toolbar 高度计算，值为 css 变量：--pro-table-toolbar-hei；
+- ProLayout Scroll 组件支持（element-plus）；
+- ProPage Scroll 组件支持（element-plus）；pro-page-sub 模式（支持 PageCurd 场景）
+
 # 0.5.33
 
 - ProTable 新增 mergeOpts 属性，支持行、列合并

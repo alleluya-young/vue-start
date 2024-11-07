@@ -1,8 +1,9 @@
 export const routes = [
+  { name: "Comp", path: "comp", component: () => import("@/views/Comp") },
   {
-    name: "About",
-    path: "about",
-    component: () => import("@/views/About.vue"),
+    name: "Compelement",
+    path: "compelement",
+    component: () => import("@/views/CompElement"),
   },
   {
     name: "Chart",
@@ -14,12 +15,6 @@ export const routes = [
         component: () => import("@/views/chart/index"),
       },
     ],
-  },
-  { name: "Comp", path: "comp", component: () => import("@/views/Comp") },
-  {
-    name: "Compelement",
-    path: "compelement",
-    component: () => import("@/views/CompElement"),
   },
   {
     name: "Config",
@@ -33,9 +28,15 @@ export const routes = [
     ],
   },
   {
-    name: "Counter",
-    path: "counter",
-    component: () => import("@/views/Counter.vue"),
+    name: "Css",
+    path: "css",
+    children: [
+      {
+        name: "CssIndex",
+        path: "index",
+        component: () => import("@/views/css/index"),
+      },
+    ],
   },
   {
     name: "Curd",
@@ -82,6 +83,45 @@ export const routes = [
             name: "CurdModalIndex",
             path: "index",
             component: () => import("@/views/curd/modal/index"),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "CurdDemo",
+    path: "curd-demo",
+    children: [
+      {
+        name: "CurdDemoBasic",
+        path: "basic",
+        children: [
+          {
+            name: "CurdDemoBasicIndex",
+            path: "index",
+            component: () => import("@/views/curd-demo/basic/index"),
+          },
+        ],
+      },
+      {
+        name: "CurdDemoModal",
+        path: "modal",
+        children: [
+          {
+            name: "CurdDemoModalIndex",
+            path: "index",
+            component: () => import("@/views/curd-demo/modal/index"),
+          },
+        ],
+      },
+      {
+        name: "CurdDemoPage",
+        path: "page",
+        children: [
+          {
+            name: "CurdDemoPageIndex",
+            path: "index",
+            component: () => import("@/views/curd-demo/page/index"),
           },
         ],
       },
@@ -336,7 +376,6 @@ export const routes = [
       },
     ],
   },
-  { name: "Home", path: "home", component: () => import("@/views/Home.vue") },
   {
     name: "Hooks",
     path: "hooks",
@@ -469,11 +508,6 @@ export const routes = [
         ],
       },
     ],
-  },
-  {
-    name: "Network",
-    path: "network",
-    component: () => import("@/views/Network.vue"),
   },
   {
     name: "Overview",

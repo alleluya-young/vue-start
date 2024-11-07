@@ -2,12 +2,11 @@
   --header-hei: 60px;
   --divide-vertical-hei: 10px;
   /*--pro-left-menu-hei: calc(100vh - 30px - 30px);*/
-  --pro-menu-start-hei: 30px;
-  --pro-menu-end-hei: 30px;
 }
 
 html body {
   font-size: 14px;
+  background-color: #f8f8f8;
 }
 
 blockquote {
@@ -16,14 +15,76 @@ blockquote {
 
 /* pro */
 
-.pro-page {
-  padding: 0px 80px;
+.pro-layout {
+  --pro-header-hei: 48px;
+  --pro-menu-start-hei: 30px;
+  --pro-menu-end-hei: 30px;
 }
 
-.pro-page .pro-page-header{
+.pro-layout .pro-layout-header {
+  background-color: white;
+}
+
+.pro-layout .pro-layout-menus-wrapper {
+  background-color: white;
+}
+
+.pro-layout .pro-header-menus-wrapper .el-menu-item{
+  line-height: var(--pro-header-hei);
+}
+
+/*样式一*/
+/*.pro-page {*/
+/*  height: calc(var(--pro-secion-hei) - 20px);*/
+/*  max-height: calc(var(--pro-secion-hei) - 20px);*/
+/*  margin:10px;*/
+/*}*/
+
+/*样式二*/
+.pro-page {
+  height: calc(var(--pro-secion-hei) - 10px);
+  max-height: calc(var(--pro-secion-hei) - 10px);
+  /*margin:10px;*/
+}
+
+.pro-page .pro-page-header {
+  margin-bottom: 10px;
+}
+
+.pro-page .pro-page-header::after {
+  height: 10px;
+  background-color: #f8f8f8;
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+}
+
+.pro-page .pro-page-footer {
+  margin-top: 10px;
+}
+
+.pro-page .pro-page-footer::after {
+  height: 10px;
+  background-color: #f8f8f8;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+}
+
+.pro-page .pro-page-content {
+  /*background-color: white;*/
+  margin: 0px 10px;
+  padding: 10px;
+}
+
+.pro-page .pro-page-header {
   /*background-color: white;*/
 }
-.pro-page .pro-page-footer{
+.pro-page .pro-page-footer {
   /*background-color: white;*/
 }
 

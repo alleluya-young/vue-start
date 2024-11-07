@@ -9,6 +9,9 @@ import { createHtml } from "./plugin/html";
 
 import { tsxWithCode } from "./plugin/tsxWithCode";
 
+// @ts-ignore
+import { cssToCls } from "./@vue-start-dev/devkit";
+
 import { dirAlias } from "./tool/script";
 
 const devData = process.env.VITE_DEV ? JSON.parse(process.env.VITE_DEV) : undefined;
@@ -31,17 +34,12 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       vue(),
-      tsxWithCode(),
+      devData ? cssToCls() : undefined,
+      devData ? tsxWithCode() : undefined,
       vueJsx(),
       devData
         ? htmlPlugin({
-            scripts: [
-              "",
-              {
-                src: `/${devData.entry}/index.ts`,
-                type: "module",
-              },
-            ],
+            scripts: [{ src: `/${devData.entry}/index.ts`, type: "module" }],
           })
         : undefined,
       createHtml(omit(env, "VITE_DEV")),
@@ -81,10 +79,12 @@ export default defineConfig(({ mode }) => {
               "querystring",
               "dayjs",
               "prettier",
+              "polished",
               //
               "@vue-start/antd-pro",
               "@vue-start/chart",
               "@vue-start/config",
+              "@vue-start/css",
               "@vue-start/element-pro",
               "@vue-start/hooks",
               "@vue-start/map",

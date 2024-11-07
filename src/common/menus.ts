@@ -81,11 +81,30 @@ export const menus = [
       { title: "api", name: "MapApiIndex" },
     ],
   },
+  { title: "css", name: "CssIndex" },
   {
-    title:"module",
-    name:"Module",
+    title: "curd",
+    name: "CurdDemo",
     children: [
-      { title: "list", name: "QuotaList" },
-    ]
-  }
+      { title: "curd-basic", name: "CurdDemoBasicIndex" },
+      { title: "curd-modal", name: "CurdDemoModalIndex" },
+      { title: "curd-page", name: "CurdDemoPageIndex" },
+    ],
+  },
+  {
+    title: "module",
+    name: "Module",
+    children: [{ title: "list", name: "QuotaList" }],
+  },
+  {
+    title: "test",
+    name: "TestIndex",
+    children: [
+      {
+        title: "test",
+        name: "TestDetail",
+        hide: true,
+      },
+    ],
+  },
 ];
