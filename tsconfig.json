@@ -21,6 +21,7 @@
     "declaration": true,
     "noEmitOnError": false,
     "emitDeclarationOnly": true,
+    "allowJs": true,
     "outDir": ".tmp"
   },
   "include": ["@vue-start/**/*", "@vue-start-dev/**/*", "src/**/*", "src-el/**/*"],

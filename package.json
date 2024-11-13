@@ -14,7 +14,7 @@
     "l-prepare": "tsc && lerna run build",
     "l-release": "lerna version --conventional-commits",
     "l-publish": "lerna publish from-git",
-    "start": "vite dev"
+    "dev": "node tool/dev.js src"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
